@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Online Book Store</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- HEADER -->
+<div th:replace="fragments/header :: body"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>There is nothing<br>better than to read</h1>
+        <p>Find the perfect book for everyone</p>
+        <a th:href="@{/addBook}" class="btn">➕ Add New Book</a>
+    </div>
+</section>
+
+<!-- BOOK CARDS -->
+<section class="books">
+    <h2>Popular Books</h2>
+
+    <div class="book-grid">
+        <div class="book-card" th:each="book : ${books}">
+            <h3 th:text="${book.title}"></h3>
+            <p th:text="${book.author}"></p>
+            <span class="price">₹ <span th:text="${book.price}"></span></span>
+
+            <div class="actions">
+                <a th:href="@{/editBook/{id}(id=${book.id})}">Edit</a>
+                <a th:href="@{/deleteBook/{id}(id=${book.id})}">Delete</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
